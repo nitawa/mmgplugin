@@ -420,7 +420,12 @@ Default Values' button.
           self.values = Values(self.fichierIn, 0, self.currentName)
         else:
           self.values = Values(self.MeshIn, 0, self.currentName)
-      self.Repair()
+      try:
+        self.Repair()
+      except:
+        self.values = None
+        return False
+
       if not self.CB_GenRepair.isChecked() and not self.CB_RepairOnly.isChecked():
         self.numRepair-=1
     if not self.CB_RepairOnly.isChecked():
